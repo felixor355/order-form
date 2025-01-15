@@ -443,7 +443,7 @@
         "Порошок для кофе машины, кг (уп. 0,100 кг)"
     ];
 
-    $(function() {
+      $(function() {
         $(".item-name").autocomplete({
             source: availableItems
         });
@@ -453,8 +453,7 @@
         const itemsContainer = document.getElementById('itemsContainer');
         const newRow = document.createElement('div');
         newRow.className = 'item-row';
-        newRow.innerHTML
-              newRow.innerHTML = `
+        newRow.innerHTML = `
             <input type="text" placeholder="Название товара" name="itemName[]" class="item-name" list="availableItems" required>
             <input type="number" placeholder="Количество" name="quantity[]" required>
         `;
@@ -465,23 +464,25 @@
             source: availableItems
         });
     }
-	function validateForm() {
-    const storeNameSelect = document.getElementById('storeName');
-    const storeNameError = document.getElementById('storeNameError');
 
-    if (storeNameSelect.value === "") {
-        storeNameError.style.display = 'block';
-        return false;
-    } else {
-        storeNameError.style.display = 'none';
-        return true;
+    function validateForm() {
+        const storeNameSelect = document.getElementById('storeName');
+        const storeNameError = document.getElementById('storeNameError');
+
+        if (storeNameSelect.value === "") {
+            storeNameError.style.display = 'block';
+            return false;
+        } else {
+            storeNameError.style.display = 'none';
+            return true;
+        }
     }
-}
 
     function submitForm() {
-	if (!validateForm()) {
+        if (!validateForm()) {
             return;
         }
+
         const form = document.getElementById('orderForm');
         const formData = new FormData(form);
 
@@ -511,32 +512,37 @@
         a.download = fileName;
         a.click();
         URL.revokeObjectURL(url);
+
+        // Сохраняем ссылку на файл для последующего использования
+        sessionStorage.setItem('fileUrl', url);
+        sessionStorage.setItem('fileName', fileName);
     }
 
-    function shareViaWhatsApp() {
-	if (!validateForm()) {
+    function shareFileViaWhatsApp() {
+        if (!validateForm()) {
             return;
         }
-        const form = document.getElementById('orderForm');
-        const formData = new FormData(form);
 
-        let orderData = `Название торговой точки: ${formData.get('storeName')}\n`;
-        orderData += `Фамилия сотрудника: ${formData.get('lastName')}\n`;
-        orderData += `Заказ:\n`;
+        const fileUrl = sessionStorage.getItem('fileUrl');
+        const fileName = sessionStorage.getItem('fileName');
 
-        const itemNames = formData.getAll('itemName[]');
-        const quantities = formData.getAll('quantity[]');
+        if (fileUrl && fileName) {
+            const whatsappLink = `https://wa.me/?text=Заказ%20из%20формы%20заказа%20товаров%20(%20${fileName}%20)`;
 
-        for (let i = 0; i < itemNames.length; i++) {
-            if (itemNames[i] && quantities[i]) { // Проверка на пустые значения
-                orderData += `${itemNames[i]} - ${quantities[i]}\n`;
-            }
+            const linkElement = document.createElement('a');
+            linkElement.href = whatsappLink;
+            linkElement.target = '_blank';
+
+            // Создаем временный элемент для загрузки файла
+            const tempAnchor = document.createElement('a');
+            tempAnchor.href = fileUrl;
+            tempAnchor.download = fileName;
+            tempAnchor.click();
+
+            window.open(whatsappLink, '_blank');
+        } else {
+            alert("Файл не был создан. Пожалуйста, сохраните заявку перед отправкой.");
         }
-
-        const whatsappMessage = encodeURIComponent(orderData);
-        const whatsappLink = `https://wa.me/?text=${whatsappMessage}`;
-
-        window.open(whatsappLink, '_blank');
     }
 </script>
 
