@@ -465,8 +465,23 @@
             source: availableItems
         });
     }
+	function validateForm() {
+    const storeNameSelect = document.getElementById('storeName');
+    const storeNameError = document.getElementById('storeNameError');
+
+    if (storeNameSelect.value === "") {
+        storeNameError.style.display = 'block';
+        return false;
+    } else {
+        storeNameError.style.display = 'none';
+        return true;
+    }
+}
 
     function submitForm() {
+	if (!validateForm()) {
+            return;
+        }
         const form = document.getElementById('orderForm');
         const formData = new FormData(form);
 
@@ -499,6 +514,9 @@
     }
 
     function shareViaWhatsApp() {
+	if (!validateForm()) {
+            return;
+        }
         const form = document.getElementById('orderForm');
         const formData = new FormData(form);
 
