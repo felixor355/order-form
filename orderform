@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма Заказа Товаров</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .item-row select, .item-row input {
+            width: 48%;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Форма Заказа Товаров</h1>
+
+<form id="orderForm">
+    <label for="storeName">Название торговой точки:</label>
+    <input type="text" id="storeName" name="storeName" required>
+
+    <label for="lastName">Фамилия сотрудника:</label>
+    <input type="text" id="lastName" name="lastName" required>
+
+    <div id="itemsContainer">
+        <div class="item-row">
+            <select name="itemName[]" required>
+                <option value="">Выберите товар</option>
+                <!-- Предустановленные позиции -->
+                <option value="Кофе зерновой 'Melange', кг">Кофе зерновой 'Melange', кг</option>
+                <option value="Горячий шоколад, кг">Горячий шоколад, кг</option>
+                <option value="Молоко коровье, л">Молоко коровье, л</option>
+                <option value="Молоко Кокосовое, л">Молоко Кокосовое, л</option>
+                <option value="Молоко Миндальное, л">Молоко Миндальное, л</option>
+                <option value="Молоко овсяное 'Немолоко', л">Молоко овсяное 'Немолоко', л</option>
+                <option value="Сливки 10 %, л">Сливки 10 %, л</option>
+                <option value="Стаканы Melange 400мл 16 oz (уп 50 шт)">Стаканы Melange 400мл 16 oz (уп 50 шт)</option>
+                <option value="Стаканы Melange 300мл 12 oz (уп 50 шт)">Стаканы Melange 300мл 12 oz (уп 50 шт)</option>
+                <option value="Стаканы Melange 200мл 8 oz (уп 50 шт)">Стаканы Melange 200мл 8 oz (уп 50 шт)</option>
+                <option value="Крышки 0,4-0,3 большие 12-16 oz (уп 100 шт)">Крышки 0,4-0,3 большие 12-16 oz (уп 100 шт)</option>
+                <option value="Крышки 0,2 маленькие 8 oz (уп 100 шт)">Крышки 0,2 маленькие 8 oz (уп 100 шт)</option>
+                <option value="Стаканы Plast 0,300 л (уп 100 шт)">Стаканы Plast 0,300 л (уп 100 шт)</option>
+                <option value="Крышки Plast (уп 100 шт)">Крышки Plast (уп 100 шт)</option>
+                <option value="Рукавчики маленькие, 8 oz (уп. 100 шт)">Рукавчики маленькие, 8 oz (уп. 100 шт)</option>
+                <option value="Рукавчики большие 12-16 oz (уп 100 шт)">Рукавчики большие 12-16 oz (уп 100 шт)</option>
+                <option value="Трубочка КОКТЕЙЛЬНАЯ черная / цветная">Трубочка КОКТЕЙЛЬНАЯ черная / цветная</option>
+                <option value="Контейнер под блин с крыш. сп-19 (уп 70 шт), уп">Контейнер под блин с крыш. сп-19 (уп 70 шт), уп</option>
+                <option value="Стакан бумаж. белый Удон 500 мл (50 шт), уп">Стакан бумаж. белый Удон 500 мл (50 шт), уп</option>
+                <option value="Ложка столовая одноразовая (100 шт.), уп">Ложка столовая одноразовая (100 шт.), уп</option>
+                <option value="Вилка одноразовая (100 шт.), уп">Вилка одноразовая (100 шт.), уп</option>
+                <option value="Нож одноразовый (200 шт.), уп">Нож одноразовый (200 шт.), уп</option>
+                <option value="Фасовка 500 шт. 24*37, уп большая">Фасовка 500 шт. 24*37, уп большая</option>
+                <option value="Фасовка 1000 шт., уп маленькая">Фасовка 1000 шт., уп маленькая</option>
+                <option value="Палочки для еды бамбуковые, уп (100шт)">Палочки для еды бамбуковые, уп (100шт)</option>
+                <option value="Салфетки Белые, уп">Салфетки Белые, уп</option>
+                <option value="Подстаканники 4 ст. (шт.)">Подстаканники 4 ст. (шт.)</option>
+                <option value="Соусник прозр. с крышкой 50мл, шт (в уп 60шт)">Соусник прозр. с крышкой 50мл, шт (в уп 60шт)</option>
+                <option value="Соусник прозр. с крышкой 30мл, шт (в уп 60шт)">Соусник прозр. с крышкой 30мл, шт (в уп 60шт)</option>
+                <option value="Стаканы пластиковые под воду (уп 100 шт.)">Стаканы пластиковые под воду (уп 100 шт.)</option>
+                <option value="Подложка золото (уп 10шт)">Подложка золото (уп 10шт)</option>
+                <option value="Мусорные пакеты(М) 30л.">Мусорные пакеты(М) 30л.</option>
+                <option value="Мусорные пакеты(Б) 180л, (уп. 50 шт)">Мусорные пакеты(Б) 180л, (уп. 50 шт)</option>
+                <option value="Зубочистки (уп. 500/ 1000 шт)">Зубочистки (уп. 500/ 1000 шт)</option>
+                <option value="Перчатки п/э для БУРГЕРА (уп. 100 шт)">Перчатки п/э для БУРГЕРА (уп. 100 шт)</option>
+                <option value="Контейнер для еды, 0,6 л \ 1 л">Контейнер для еды, 0,6 л \ 1 л</option>
+                <option value="Мороженое (брекет 80 г), шт.">Мороженое (брекет 80 г), шт.</option>
+                <option value="Заморозка смородина, кг ( 0.3 кг)">Заморозка смородина, кг ( 0.3 кг)</option>
+                <option value="Заморозка ежевика,кг ( 0.3 кг)">Заморозка ежевика,кг ( 0.3 кг)</option>
+                <option value="Заморозка клубника,кг (0.3 кг)">Заморозка клубника,кг (0.3 кг)</option>
+                <option value="Заморозка ананас,кг ( 0.3 кг)">Заморозка ананас,кг ( 0.3 кг)</option>
+                <option value="Заморозка шпинат,кг ( 0.3 кг)">Заморозка шпинат,кг ( 0.3 кг)</option>
+                <option value="Заморозка манго,кг ( 0,3 кг)">Заморозка манго,кг ( 0,3 кг)</option>
+                <option value="Чай Адмирал (уп 25шт.)">Чай Адмирал (уп 25шт.)</option>
+                <option value="Чай Ассам Бехора (уп 25шт.)">Чай Ассам Бехора (уп 25шт.)</option>
+                <option value="Чай Чёрн. Эрл Грей (уп 25шт.)">Чай Чёрн. Эрл Грей (уп 25шт.)</option>
+                <option value="Чай Зеленый с мятой (уп 25шт.)">Чай Зеленый с мятой (уп 25шт.)</option>
+                <option value="Чай Чабрец (уп 25шт.)">Чай Чабрец (уп 25шт.)</option>
+                <option value="Чай Лесная ягода (уп 25шт.)">Чай Лесная ягода (уп 25шт.)</option>
+                <option value="Чай Малина мята (уп 25шт.)">Чай Малина мята (уп 25шт.)</option>
+                <option value="Чай Молочный улун (уп 25шт.)">Чай Молочный улун (уп 25шт.)</option>
+                <option value="Чай Таёжный (уп 25шт.)">Чай Таёжный (уп 25шт.)</option>
+                <option value="Чай Сладкий поцелуй (уп 25шт.)">Чай Сладкий поцелуй (уп 25шт.)</option>
+                <option value="Чай Клубника со сливками (уп 25шт.)">Чай Клубника со сливками (уп 25шт.)</option>
+                <option value="Матча зеленая (уп. 0,040 кг)">Матча зеленая (уп. 0,040 кг)</option>
+                <option value="Сок апельсин (1 л.)">Сок апельсин (1 л.)</option>
+                <option value="Сок персик (1 л.)">Сок персик (1 л.)</option>
+                <option value="Сок вишня (1 л.)">Сок вишня (1 л.)</option>
+                <option value="Сок яблоко (1 л.)">Сок яблоко (1 л.)</option>
+                <option value="Трюфель без Сахара (уп. 30 шт)">Трюфель без Сахара (уп. 30 шт)</option>
+                <option value="Трюфель (уп. 30 шт)">Трюфель (уп. 30 шт)</option>
+                <option value="Сгущ. Молоко, кг (1 уп 0,270 кг)">Сгущ. Молоко, кг (1 уп 0,270 кг)</option>
+                <option value="Квас (0,5 л),шт">Квас (0,5 л),шт</option>
+                <option value="Бонаква 0,5 не газ/ газ, шт">Бонаква 0,5 не газ/ газ, шт</option>
+                <option value="Рич Тоник, л">Рич Тоник, л</option>
+                <option value="Сахар рафинад, кг">Сахар рафинад, кг</option>
+                <option value="Ванильный сахар, кг (уп. 0,3кг)">Ванильный сахар, кг (уп. 0,3кг)</option>
+                <option value="Мускатный орех (уп. 0,01г)">Мускатный орех (уп. 0,01г)</option>
+                <option value="Имбирь молотый (уп. 0,01кг)">Имбирь молотый (уп. 0,01кг)</option>
+                <option value="Корица молотая (уп. 0,01кг)">Корица молотая (уп. 0,01кг)</option>
+                <option value="Гвоздика молотая (уп. 0,01кг)">Гвоздика молотая (уп. 0,01кг)</option>
+                <option value="Перец чёрный молотый (уп. 0,01кг)">Перец чёрный молотый (уп. 0,01кг)</option>
+                <option value="Куркума молотая (уп. 0,01кг)">Куркума молотая (уп. 0,01кг)</option>
+                <option value="Корица палочками, кг (уп. 0,1кг)">Корица палочками, кг (уп. 0,1кг)</option>
+                <option value="Гвоздика целая (уп. 0,01кг)">Гвоздика целая (уп. 0,01кг)</option>
+                <option value="Бадьян целый, кг (уп. 0,1кг)">Бадьян целый, кг (уп. 0,1кг)</option>
+                <option value="Грецкий орех, кг (уп 0,1кг)">Грецкий орех, кг (уп 0,1кг)</option>
+                <option value="Кокосовая стружка, кг (уп.0,05кг)">Кокосовая стружка, кг (уп.0,05кг)</option>
+                <option value="Какао порошок Полеззно, кг (уп. 0,2кг)">Какао порошок Полеззно, кг (уп. 0,2кг)</option>
+                <option value="Концентрат лимона (0,5 л), шт">Концентрат лимона (0,5 л), шт</option>
+                <option value="Основа глинтвейн 1 л">Основа глинтвейн 1 л</option>
+                <option value="Зефирки уп. 15 г, шт">Зефирки уп. 15 г, шт</option>
+                <option value="Орео (12 шт.) уп">Орео (12 шт.) уп</option>
+                <option value="Бланк отчет Повара на кухне, шт">Бланк отчет Повара на кухне, шт</option>
+                <option value="Бланк заявка на продукты/хозы поставщикам">Бланк заявка на продукты/хозы поставщикам</option>
+                <option value="Бланк заявки на П/Ф (кухня)">Бланк заявки на П/Ф (кухня)</option>
+                <option value="Бланк Отчет ежедневный (точки)">Бланк Отчет ежедневный (точки)</option>
+                <option value="Бланк заявки на товар со склада (БАР)">Бланк заявки на товар со склада (БАР)</option>
+                <option value="Бланк заявки на ВЫПЕЧКУ с цеха">Бланк заявки на ВЫПЕЧКУ с цеха</option>
+                <option value="Бланк ИНВЕНТАРИЗАЦИИ">Бланк ИНВЕНТАРИЗАЦИИ</option>
+                <option value="Сироп Поп-корн 0,7л">Сироп Поп-корн 0,7л</option>
+                <option value="Сироп Лаванда, 0,7 л">Сироп Лаванда, 0,7 л</option>
+                <option value="Сироп Манго пряный 0,7 л">Сироп Манго пряный 0,7 л</option>
+                <option value="Сироп Лесной Орех, 0,7л">Сироп Лесной Орех, 0,7л</option>
+                <option value="Сироп Солёная карамель 0,7л">Сироп Солёная карамель 0,7л</option>
+                <option value="Сироп Кокос, 0,7л">Сироп Кокос, 0,7л</option>
+                <option value="Сироп Клубника, 0,7л">Сироп Клубника, 0,7л</option>
+                <option value="Сироп Шок. трюфель, 0,7 л">Сироп Шок. трюфель, 0,7 л</option>
+                <option value="Сироп Французкая ваниль, 0,7л">Сироп Французкая ваниль, 0,7л</option>
+                <option value="Сироп Миндаль, 0,7 л">Сироп Миндаль, 0,7 л</option>
+                <option value="Сироп Красный апельсин, 0,7 л">Сироп Красный апельсин, 0,7 л</option>
+                <option value="Сироп Плоды и цветы Бузины, 0,7 л">Сироп Плоды и цветы Бузины, 0,7 л</option>
+                <option value="Сироп Мята-эвкалипт, 0,7 л">Сироп Мята-эвкалипт, 0,7 л</option>
+                <option value="Сироп Маракуйя, 0,7 л">Сироп Маракуйя, 0,7 л</option>
+                <option value="Сироп Банан, 0,7 л">Сироп Банан, 0,7 л</option>
+                <option value="Топпинг клубничный (1кг)">Топпинг клубничный (1кг)</option>
+                <option value="Топпинг малиновый (1кг)">Топпинг малиновый (1кг)</option>
+                <option value="Топпинг кленовый сироп (1кг)">Топпинг кленовый сироп (1кг)</option>
+                <option value="Топпинг шоколадный (1 кг)">Топпинг шоколадный (1 кг)</option>
+                <option value="Топпинг солёная карамель (1 кг)">Топпинг солёная карамель (1 кг)</option>
+                <option value="Пюре Облепиха, (1 кг)">Пюре Облепиха, (1 кг)</option>
+                <option value="Варенье из сосновых шишек,уп (1,45кг)">Варенье из сосновых шишек,уп (1,45кг)</option>
+                <option value="Лимонник с сахаром,уп (0,230 кг)">Лимонник с сахаром,уп (0,230 кг)</option>
+                <option value="Мёд,кг ( 1,5 кг)">Мёд,кг ( 1,5 кг)</option>
+                <option value="Болл личи 50гр + трубочка, уп (8шт)">Болл личи 50гр + трубочка, уп (8шт)</option>
+                <option value="Болл виноград 50гр + трубочка, уп (8шт)">Болл виноград 50гр + трубочка, уп (8шт)</option>
+                <option value="Банан шт.">Банан шт.</option>
+                <option value="Апельсин шт.">Апельсин шт.</option>
+                <option value="Лимон шт.">Лимон шт.</option>
+                <option value="Пакет крафт с ручкой / без ручки шт.">Пакет крафт с ручкой / без ручкой шт.</option>
+                <option value="Эко упак. Меланж с проз.крыш. 500мл (уп. 50 шт)">Эко упак. Меланж с проз.крыш. 500мл (уп. 50 шт)</option>
+                <option value="Стакан д/супа с крыш. (340мл Крафт12С) (уп 45шт)">Стакан д/супа с крыш. (340мл Крафт12С) (уп 45шт)</option>
+                <option value="Стакан для супа с крышкой(470мл Белый) 50 шт в уп">Стакан для супа с крышкой(470мл Белый) 50 шт в уп</option>
+                <option value="Коробка для гамбургера (50 шт)">Коробка для гамбургера (50 шт)</option>
+                <option value="Упаковка для картошки фри уп.(50шт.)">Упаковка для картошки фри уп.(50шт.)</option>
+                <option value="Пакет для роллов Melange (100 шт.)">Пакет для роллов Melange (100 шт.)</option>
+                <option value="Пакет для гриля с окном (100 шт.)">Пакет для гриля с окном (100 шт.)</option>
+                <option value="Влажная салфетка (уп. 50 шт)">Влажная салфетка (уп. 50 шт)</option>
+                <option value="Банка прозрачная с крышкой бизнес 0,5 (25 шт), уп">Банка прозрачная с крышкой бизнес 0,5 (25 шт), уп</option>
+                <option value="Контейнер круглый кр 350 с крышкой (25 шт), уп">Контейнер круглый кр 350 с крышкой (25 шт), уп</option>
+                <option value="Средство для мытья посуды 1л / 5 л">Средство для мытья посуды 1л / 5 л</option>
+                <option value="Средство для мытья полов 1 л / 5 л">Средство для мытья полов 1 л / 5 л</option>
+                <option value="Средство для стекол 0,5л (шт.)">Средство для стекол 0,5л (шт.)</option>
+                <option value="Полироль шт.">Полироль шт.</option>
+                <option value="НИТРИЛОВЫЕ перчатки S / M / L уп.">НИТРИЛОВЫЕ перчатки S / M / L уп.</option>
+                <option value="Тряпка пыль шт.">Тряпка пыль шт.</option>
+                <option value="Тряпка пол (1 метр)">Тряпка пол (1 метр)</option>
+                <option value="Резиновые перчатки хозяйственные S / M / L">Резиновые перчатки хозяйственные S / M / L</option>
+                <option value="Губки для мытья посуды (1уп.-5шт.)">Губки для мытья посуды (1уп.-5шт.)</option>
+                <option value="Жироудалитель шт. (0,75л)">Жироудалитель шт. (0,75л)</option>
+                <option value="Вафельное полотенце (1 метр)">Вафельное полотенце (1 метр)</option>
+                <option value="Бумажные полотенца (Vобразные)уп / Рулон (уп.2 шт)">Бумажные полотенца (Vобразные)уп / Рулон (уп.2 шт)</option>
+                <option value="Туалетная бумага (1уп-4шт) / большая для диспен., уп">Туалетная бумага (1уп-4шт) / большая для диспен., уп</option>
+                <option value="Освежитель воздуха / сменный балон. шт.">Освежитель воздуха / сменный балон. шт.</option>
+                <option value="Доместос шт. / Комет шт.">Доместос шт. / Комет шт.</option>
+                <option value="Железные щетки для посуды (1уп.-2шт.)">Железные щетки для посуды (1уп.-2шт.)</option>
+                <option value="Смен. насадка на швабру 'лапша', шт.">Смен. насадка на швабру 'лапша', шт.</option>
+                <option value="Ловушка от тараканов / лента от мух">Ловушка от тараканов / лента от мух</option>
+                <option value="Лента для безнала / Лента для касс. аппарата, шт.">Лента для безнала / Лента для касс. аппарата, шт.</option>
+                <option value="Термоэтикетка (наклейки) шт.">Термоэтикетка (наклейки) шт.</option>
+                <option value="Маркер чёрный/ маркер белый/ текстовыделитель, шт">Маркер чёрный/ маркер белый/ текстовыделитель, шт</option>
+                <option value="Ножницы, шт. / Скотч, шт">Ножницы, шт. / Скотч, шт</option>
+                <option value="Степлер большой / малый, шт.">Степлер большой / малый, шт.</option>
+                <option value="Ручка шариковая, синяя/красная, шт">Ручка шариковая, синяя/красная, шт</option>
+                <option value="Скобы для степлера большие/ маленькие">Скобы для степлера большие/ маленькие</option>
+                <option value="Стикеры, шт / Замазка, шт">Стикеры, шт / Замазка, шт</option>
+                <option value="Батарейка Мизинчиковая / Пальчиковая">Батарейка Мизинчиковая / Пальчиковая</option>
+                <option value="Порошок для кофе машины, кг (уп. 0,100 кг)">Порошок для кофе машины, кг (уп. 0,100 кг)</option>
+            </select>
+            <input type="number" placeholder="Количество" name="quantity[]" required>
+        </div>
+    </div>
+
+    <button type="button" onclick="addItemRow()">Добавить позицию</button>
+
+    <button type="button" onclick="submitForm()">Сохранить заявку</button>
+</form>
+
+<script>
+    function addItemRow() {
+        const itemsContainer = document.getElementById('itemsContainer');
+        const newRow = document.createElement('div');
+        newRow.className = 'item-row';
+        newRow.innerHTML = `
+            <select name="itemName[]" required>
+                <option value="">Выберите товар</option>
+                <option value="Кофе зерновой 'Melange', кг">Кофе зерновой 'Melange', кг</option>
+                <option value="Горячий шоколад, кг">Горячий шоколад, кг</option>
+                <option value="Молоко коровье, л">Молоко коровье, л</option>
+                <option value="Молоко Кокосовое, л">Молоко Кокосовое, л</option>
+                <option value="Молоко Миндальное, л">Молоко Миндальное, л</option>
+                <option value="Молоко овсяное 'Немолоко', л">Молоко овсяное 'Немолоко', л</option>
+                <option value="Сливки 10 %, л">Сливки 10 %, л</option>
+                <option value="Стаканы Melange 400мл 16 oz (уп 50 шт)">Стаканы Melange 400мл 16 oz (уп 50 шт)</option>
+                <option value="Стаканы Melange 300мл 12 oz (уп 50 шт)">Стаканы Melange 300мл 12 oz (уп 50 шт)</option>
+                <option value="Стаканы Melange 200мл 8 oz (уп 50 шт)">Стаканы Melange 200мл 8 oz (уп 50 шт)</option>
+                <option value="Крышки 0,4-0,3 большие 12-16 oz (уп 100 шт)">Крышки 0,4-0,3 большие 12-16 oz (уп 100 шт)</option>
+                <option value="Крышки 0,2 маленькие 8 oz (уп 100 шт)">Крышки 0,2 маленькие 8 oz (уп 100 шт)</option>
+                <option value="Стаканы Plast 0,300 л (уп 100 шт)">Стаканы Plast 0,300 л (уп 100 шт)</option>
+                <option value="Крышки Plast (уп 100 шт)">Крышки Plast (уп 100 шт)</option>
+                <option value="Рукавчики маленькие, 8 oz (уп. 100 шт)">Рукавчики маленькие, 8 oz (уп. 100 шт)</option>
+                <option value="Рукавчики большие 12-16 oz (уп 100 шт)">Рукавчики большие 12-16 oz (уп 100 шт)</option>
+                <option value="Трубочка КОКТЕЙЛЬНАЯ черная / цветная">Трубочка КОКТЕЙЛЬНАЯ черная / цветная</option>
+                <option value="Контейнер под блин с крыш. сп-19 (уп 70 шт), уп">Контейнер под блин с крыш. сп-19 (уп 70 шт), уп</option>
+                <option value="Стакан бумаж. белый Удон 500 мл (50 шт), уп">Стакан бумаж. белый Удон 500 мл (50 шт), уп</option>
+                <option value="Ложка столовая одноразовая (100 шт.), уп">Ложка столовая одноразовая</option>
+</select>
+            <input type="number" placeholder="Количество" name="quantity[]" required>
+        `;
+        itemsContainer.appendChild(newRow);
+    }
+
+    function submitForm() {
+        const form = document.getElementById('orderForm');
+        const formData = new FormData(form);
+
+        let orderData = `Название торговой точки: ${formData.get('storeName')}\n`;
+        orderData += `Фамилия сотрудника: ${formData.get('lastName')}\n`;
+        orderData += `Заказ:\n`;
+
+        const itemNames = formData.getAll('itemName[]');
+        const quantities = formData.getAll('quantity[]');
+
+        for (let i = 0; i < itemNames.length; i++) {
+            if (itemNames[i] && quantities[i]) { // Проверка на пустые значения
+                orderData += `${itemNames[i]} - ${quantities[i]}\n`;
+            }
+        }
+
+        const blob = new Blob([orderData], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `order_${new Date().toISOString().replace(/[:.]/g, '-')}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+</script>
+
+</body>
+</html>
