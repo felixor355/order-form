@@ -453,7 +453,8 @@
         const itemsContainer = document.getElementById('itemsContainer');
         const newRow = document.createElement('div');
         newRow.className = 'item-row';
-        newRow.innerHTML        
+        newRow.innerHTML
+              newRow.innerHTML = `
             <input type="text" placeholder="Название товара" name="itemName[]" class="item-name" list="availableItems" required>
             <input type="number" placeholder="Количество" name="quantity[]" required>
         `;
