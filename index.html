@@ -69,7 +69,52 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-  <div id="itemsContainer">
+ 
+<h1>Форма Заказа Товаров</h1>
+
+<form id="orderForm">
+    <label for="storeName">Название торговой точки:</label>
+    <select id="storeName" name="storeName" required>
+        <option value="">Выберите торговую точку</option>
+        <option value="Арбат">Арбат</option>
+        <option value="БЦ Фреш Плаза">БЦ Фреш Плаза</option>
+        <option value="БЦ Эгершельд">БЦ Эгершельд</option>
+        <option value="Дальпресс на Комсомольской">Дальпресс на Комсомольской</option>
+        <option value="Кафе на 3 рабочей">Кафе на 3 рабочей</option>
+        <option value="Кафе на березовой">Кафе на березовой</option>
+        <option value="Кафе на Стрельникова">Кафе на Стрельникова</option>
+        <option value="Пит-стоп на Бородинской">Пит-стоп на Бородинской</option>
+        <option value="Питстоп на ботсаду2">Питстоп на ботсаду2</option>
+        <option value="Пит-стоп на Маяке">Пит-стоп на Маяке</option>
+        <option value="Пит-стоп на набережной 2">Пит-стоп на набережной 2</option>
+        <option value="Пит-стоп под Некрасовским мостом">Пит-стоп под Некрасовским мостом</option>
+        <option value="Приморгражданпроект">Приморгражданпроект</option>
+        <option value="ПТК Искра">ПТК Искра</option>
+        <option value="ПТК Луговая на 1 этаже возле эскалатора">ПТК Луговая на 1 этаже возле эскалатора</option>
+        <option value="ПТК Луговая на 2 этаже">ПТК Луговая на 2 этаже</option>
+        <option value="Реми на Борисенко">Реми на Борисенко</option>
+        <option value="Реми на Ильичева">Реми на Ильичева</option>
+        <option value="ТД Славянский">ТД Славянский</option>
+        <option value="ТРЦ Голубиная падь">ТРЦ Голубиная падь</option>
+        <option value="ТРЦ Снеговая падь">ТРЦ Снеговая падь</option>
+        <option value="ТТЦ Дазэл">ТТЦ Дазэл</option>
+        <option value="ТТЦ Дазэл Столовая">ТТЦ Дазэл Столовая</option>
+        <option value="ТЦ Надежда">ТЦ Надежда</option>
+        <option value="ТЦ Первореченский центр.вход">ТЦ Первореченский центр.вход</option>
+    </select>
+
+    <label for="lastName">Фамилия сотрудника:</label>
+    <input type="text" id="lastName" name="lastName" required>
+
+    <div id="itemsContainer">
+        <div class="item-row">
+            <input type="text" placeholder="Название товара" name="itemName[]" class="item-name" list="availableItems" required>
+            <input type="number" placeholder="Количество" name="quantity[]" required>
+        </div>
+    </div>
+
+    <button type="button" onclick="addItemRow()">Добавить позицию</button>
+ <div id="itemsContainer">
         <div class="item-row">
             <input type="text" placeholder="Название товара" name="itemName[]" class="item-name" list="availableItems" required>
             <datalist id="availableItems">
@@ -235,51 +280,6 @@
             <input type="number" placeholder="Количество" name="quantity[]" required>
         </div>
     </div>
-<h1>Форма Заказа Товаров</h1>
-
-<form id="orderForm">
-    <label for="storeName">Название торговой точки:</label>
-    <select id="storeName" name="storeName" required>
-        <option value="">Выберите торговую точку</option>
-        <option value="Арбат">Арбат</option>
-        <option value="БЦ Фреш Плаза">БЦ Фреш Плаза</option>
-        <option value="БЦ Эгершельд">БЦ Эгершельд</option>
-        <option value="Дальпресс на Комсомольской">Дальпресс на Комсомольской</option>
-        <option value="Кафе на 3 рабочей">Кафе на 3 рабочей</option>
-        <option value="Кафе на березовой">Кафе на березовой</option>
-        <option value="Кафе на Стрельникова">Кафе на Стрельникова</option>
-        <option value="Пит-стоп на Бородинской">Пит-стоп на Бородинской</option>
-        <option value="Питстоп на ботсаду2">Питстоп на ботсаду2</option>
-        <option value="Пит-стоп на Маяке">Пит-стоп на Маяке</option>
-        <option value="Пит-стоп на набережной 2">Пит-стоп на набережной 2</option>
-        <option value="Пит-стоп под Некрасовским мостом">Пит-стоп под Некрасовским мостом</option>
-        <option value="Приморгражданпроект">Приморгражданпроект</option>
-        <option value="ПТК Искра">ПТК Искра</option>
-        <option value="ПТК Луговая на 1 этаже возле эскалатора">ПТК Луговая на 1 этаже возле эскалатора</option>
-        <option value="ПТК Луговая на 2 этаже">ПТК Луговая на 2 этаже</option>
-        <option value="Реми на Борисенко">Реми на Борисенко</option>
-        <option value="Реми на Ильичева">Реми на Ильичева</option>
-        <option value="ТД Славянский">ТД Славянский</option>
-        <option value="ТРЦ Голубиная падь">ТРЦ Голубиная падь</option>
-        <option value="ТРЦ Снеговая падь">ТРЦ Снеговая падь</option>
-        <option value="ТТЦ Дазэл">ТТЦ Дазэл</option>
-        <option value="ТТЦ Дазэл Столовая">ТТЦ Дазэл Столовая</option>
-        <option value="ТЦ Надежда">ТЦ Надежда</option>
-        <option value="ТЦ Первореченский центр.вход">ТЦ Первореченский центр.вход</option>
-    </select>
-
-    <label for="lastName">Фамилия сотрудника:</label>
-    <input type="text" id="lastName" name="lastName" required>
-
-    <div id="itemsContainer">
-        <div class="item-row">
-            <input type="text" placeholder="Название товара" name="itemName[]" class="item-name" list="availableItems" required>
-            <input type="number" placeholder="Количество" name="quantity[]" required>
-        </div>
-    </div>
-
-    <button type="button" onclick="addItemRow()">Добавить позицию</button>
-
     <div class="share-buttons">
         <button type="button" onclick="submitForm()">Сохранить заявку</button>
         <button type="button" onclick="shareViaWhatsApp()">Поделиться в WhatsApp</button>
