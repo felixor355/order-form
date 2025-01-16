@@ -32,7 +32,6 @@
             border-radius: 5px;
         }
         button {
-            width: 100%;
             padding: 10px;
             background-color: #28a745;
             color: white;
@@ -43,31 +42,27 @@
         button:hover {
             background-color: #218838;
         }
-.item-row .delete-button {
-    width: 48%;
-    padding: 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.item-row .delete-button:hover {
-    background-color: #c82333;
-}
-      .item-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.item-row input, .item-row select, .item-row .delete-button {
-    width: 48%;
-    padding: 10px;
-    margin-bottom: 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .item-row input, .item-row select, .item-row .delete-button {
+            width: 48%;
+            padding: 10px;
+            margin-bottom: 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .item-row .delete-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+        .item-row .delete-button:hover {
+            background-color: #c82333;
+        }
         .ui-autocomplete {
             max-height: 150px;
             overflow-y: auto;
@@ -79,6 +74,11 @@
         }
         .share-buttons button {
             width: 48%;
+            padding: 10px;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
         }
     </style>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -119,21 +119,16 @@
         <option value="ТЦ Надежда">ТЦ Надежда</option>
         <option value="ТЦ Первореченский центр.вход">ТЦ Первореченский центр.вход</option>
     </select>
-<div class="error-message" id="storeNameError" style="display:none;">Пожалуйста, выберите торговую точку.</div>
+    <div class="error-message" id="storeNameError" style="display:none;">Пожалуйста, выберите торговую точку.</div>
+
     <label for="lastName">Фамилия сотрудника:</label>
     <input type="text" id="lastName" name="lastName" required>
-  <div id="itemsContainer">
-        <div class="item-row">
-            <input type="text" placeholder="Название товара" name="itemName[]" class="item-name" list="availableItems" required>
-            <input type="number" placeholder="Количество" name="quantity[]" required>
-            <button type="button" class="delete-button" onclick="removeItemRow(this)">Удалить</button>
-        </div>
-    </div>
+
     <div id="itemsContainer">
         <div class="item-row">
-            <input type="text" placeholder="Начни заполнять" name="itemName[]" class="item-name" list="availableItems" required>
+            <input type="text" placeholder="Название товара" name="itemName[]" class="item-name" list="availableItems" required>
             <datalist id="availableItems">
-                <option value="Кофе зерновой 'Melange', кг">
+                 <option value="Кофе зерновой 'Melange', кг">
                 <option value="Горячий шоколад, кг">
                 <option value="Молоко коровье, л">
                 <option value="Молоко Кокосовое, л">
@@ -293,6 +288,7 @@
                 <option value="Порошок для кофе машины, кг (уп. 0,100 кг)">
             </datalist>
             <input type="number" placeholder="Количество" name="quantity[]" min="1" max="1000" required>
+            <button type="button" class="delete-button" onclick="removeItemRow(this)">Удалить</button>
         </div>
     </div>
 
@@ -300,7 +296,7 @@
 
     <div class="share-buttons">
         <button type="button" onclick="submitForm()">Сохранить заявку</button>
-        <button type="button" onclick="shareViaWhatsApp()">Поделиться в WhatsApp</button>
+        <button type="button" onclick="shareFileViaWhatsApp()">Поделиться файлом в WhatsApp</button>
     </div>
 </form>
 
@@ -468,7 +464,10 @@
 
     $(function() {
         $(".item-name").autocomplete({
-            source: availableItems
+            source: availableItems,
+            minLength: 0, // Автозаполнение будет активировано даже при пустом поле
+        }).focus(function() {
+            $(this).autocomplete("search", ""); // Отображает все доступные варианты при фокусе
         });
     });
 
@@ -478,37 +477,43 @@
         newRow.className = 'item-row';
         newRow.innerHTML = `
             <input type="text" placeholder="Название товара" name="itemName[]" class="item-name" list="availableItems" required>
-            <input type="number" placeholder="Количество" name="quantity[]" required>
+            <input type="number" placeholder="Количество" name="quantity[]" min="1" max="1000" required>
             <button type="button" class="delete-button" onclick="removeItemRow(this)">Удалить</button>
         `;
         itemsContainer.appendChild(newRow);
 
         // Инициализация autocomplete для нового поля
         $(newRow.querySelector('.item-name')).autocomplete({
-            source: availableItems
+            source: availableItems,
+            minLength: 0,
+        }).focus(function() {
+            $(this).autocomplete("search", "");
         });
     }
-function removeItemRow(button) {
-    const row = button.parentElement;
-    row.remove();
-}
-	function validateForm() {
-    const storeNameSelect = document.getElementById('storeName');
-    const storeNameError = document.getElementById('storeNameError');
 
-    if (storeNameSelect.value === "") {
-        storeNameError.style.display = 'block';
-        return false;
-    } else {
-        storeNameError.style.display = 'none';
-        return true;
+    function removeItemRow(button) {
+        const row = button.parentElement;
+        row.remove();
     }
-}
+
+    function validateForm() {
+        const storeNameSelect = document.getElementById('storeName');
+        const storeNameError = document.getElementById('storeNameError');
+
+        if (storeNameSelect.value === "") {
+            storeNameError.style.display = 'block';
+            return false;
+        } else {
+            storeNameError.style.display = 'none';
+            return true;
+        }
+    }
 
     function submitForm() {
-	if (!validateForm()) {
+        if (!validateForm()) {
             return;
         }
+
         const form = document.getElementById('orderForm');
         const formData = new FormData(form);
 
@@ -538,32 +543,33 @@ function removeItemRow(button) {
         a.download = fileName;
         a.click();
         URL.revokeObjectURL(url);
+
+        // Сохраняем ссылку на файл для последующего использования
+        sessionStorage.setItem('fileUrl', url);
+        sessionStorage.setItem('fileName', fileName);
     }
 
-    function shareViaWhatsApp() {
-	if (!validateForm()) {
+    function shareFileViaWhatsApp() {
+        if (!validateForm()) {
             return;
         }
-        const form = document.getElementById('orderForm');
-        const formData = new FormData(form);
 
-        let orderData = `Название торговой точки: ${formData.get('storeName')}\n`;
-        orderData += `Фамилия сотрудника: ${formData.get('lastName')}\n`;
-        orderData += `Заказ:\n`;
+        const fileUrl = sessionStorage.getItem('fileUrl');
+        const fileName = sessionStorage.getItem('fileName');
 
-        const itemNames = formData.getAll('itemName[]');
-        const quantities = formData.getAll('quantity[]');
+        if (fileUrl && fileName) {
+            const whatsappLink = `https://wa.me/?text=Заказ%20из%20формы%20заказа%20товаров%20(%20${fileName}%20)`;
 
-        for (let i = 0; i < itemNames.length; i++) {
-            if (itemNames[i] && quantities[i]) { // Проверка на пустые значения
-                orderData += `${itemNames[i]} - ${quantities[i]}\n`;
-            }
+            const tempAnchor = document.createElement('a');
+            tempAnchor.href = fileUrl;
+            tempAnchor.download = fileName;
+            tempAnchor.click();
+
+            window.open(whatsappLink, '_blank');
+            alert("Загрузите файл и отправьте его через WhatsApp.");
+        } else {
+            alert("Файл не был создан. Пожалуйста, сохраните заявку перед отправкой.");
         }
-
-        const whatsappMessage = encodeURIComponent(orderData);
-        const whatsappLink = `https://wa.me/?text=${whatsappMessage}`;
-
-        window.open(whatsappLink, '_blank');
     }
 </script>
 
