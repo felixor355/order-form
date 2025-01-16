@@ -25,23 +25,37 @@
             margin-bottom: 10px;
         }
         input, select, textarea {
-            width: 100%;
+            width: 70%;
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
         button {
+	
             padding: 10px;
-            background-color: #28a745;
+            background-color: #28a735;
             color: white;
+	    margin-bottom: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #218838;
-        }
+	.center-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.center-button:hover {
+    background-color: #45a049;
+}
+        
         .item-row {
             display: flex;
             justify-content: space-between;
@@ -137,7 +151,8 @@
 </form>
 
 <script>
-    
+
+
     // Загрузка данных из localStorage при загрузке страницы
     window.onload = function() {
         loadFormData();
