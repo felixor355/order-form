@@ -148,6 +148,7 @@
         <option value="ТТЦ Дазэл Столовая">ТТЦ Дазэл Столовая</option>
         <option value="ТЦ Надежда">ТЦ Надежда</option>
         <option value="ТЦ Первореченский центр.вход">ТЦ Первореченский центр.вход</option>
+         <option value="Офис Ильичева 22а">Офис Ильичева 22а</option>
     </select>
     <div class="error-message" id="storeNameError" style="display:none;">Пожалуйста, выберите торговую точку.</div>
 
@@ -182,7 +183,7 @@
             <div style="display: flex; align-items: center;">
                 <input type="text" placeholder="Название товара" name="itemName[]" class="item-name" list="availableItems" required style="margin-right: 10px;">
                 <datalist id="availableItems">
-                    <option value="Кофе зерновой 'Melange', кг">
+                   <option value="Кофе зерновой 'Melange', кг">
                 <option value="Горячий шоколад, кг">
                 <option value="Молоко коровье, л">
                 <option value="Молоко Кокосовое, л">
@@ -371,6 +372,7 @@
 
         if (storeNameSelect.value === "") {
             storeNameError.style.display = 'block';
+            storeNameSelect.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Прокрутка к полю выбора торговой точки
             return false;
         } else {
             storeNameError.style.display = 'none';
@@ -388,6 +390,7 @@
 
         let orderData = `Название торговой точки: ${formData.get('storeName')}\n`;
         orderData += `Фамилия сотрудника: ${formData.get('lastName')}\n`;
+        orderData += `Дата: ${new Date().toISOString().slice(0, 10)}\n`; // Автоматическая запись текущей даты
         orderData += `Заказ:\n`;
 
         const itemNames = formData.getAll('itemName[]');
@@ -426,6 +429,7 @@
 
         let orderData = `Название торговой точки: ${formData.get('storeName')}\n`;
         orderData += `Фамилия сотрудника: ${formData.get('lastName')}\n`;
+        orderData += `Дата: ${new Date().toISOString().slice(0, 10)}\n`; // Автоматическая запись текущей даты
         orderData += `Заказ:\n`;
 
         const itemNames = formData.getAll('itemName[]');
